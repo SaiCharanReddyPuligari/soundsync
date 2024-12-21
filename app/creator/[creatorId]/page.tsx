@@ -1,6 +1,4 @@
 'use client'
-
-import { useEffect, useState } from 'react';
 import StreamView from "@/app/components/StreamView";
 
 type Params = Promise<{ creatorId: string }>;
