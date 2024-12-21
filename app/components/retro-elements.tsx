@@ -57,7 +57,7 @@ interface RetroButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
     )
   }
   
-  export function RetroInput({type, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
+  export function RetroInput({...props }: React.InputHTMLAttributes<HTMLInputElement>) {
     //console.log(props);
     return (
       <input

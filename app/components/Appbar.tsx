@@ -52,7 +52,7 @@ export default function LandingPage() {
             Shape the Playlist
           </h1>
           <p className="text-xl mb-8 text-gray-400">
-            Create, vote, and discover playlists that evolve with the community's taste.
+            Create, vote, and discover playlists that evolve with the community&#39;s taste.
           </p>
           <div className="flex justify-center space-x-6">
           {!session.data?.user && <RetroButton variant="secondary" onClick={()=>signIn()}>

@@ -3,7 +3,7 @@ import {z} from "zod";
 import {prismaClient} from "@/app/lib/db"
 const YT_REGEX =
   /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com\/(?:watch\?(?!.*\blist=)(?:.*&)?v=|embed\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[?&]\S+)?$/;
-//@ts-ignore
+//@ts-expect-error
 import youtubesearchapi from "youtube-search-api";
 import { getServerSession } from "next-auth";
 
@@ -150,14 +150,14 @@ export async function DELETE(request:NextRequest) {
           { message: 'Stream deleted successfully', deletedStream },
           { status: 200 }
         );
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error('Error deleting stream:', error);
     
         // Handle Prisma errors or unexpected issues
         return NextResponse.json(
           {
             message: 'Failed to delete stream',
-            error: error.message || 'Unexpected error',
+            error: error || 'Unexpected error',
           },
           { status: 500 }
         );

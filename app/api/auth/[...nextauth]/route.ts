@@ -13,7 +13,7 @@ const handler = NextAuth({
       ],
       secret: process.env.NEXTAUTH_SECRET ?? "secret",
     callbacks: {
-      async signIn(params) {
+      async signIn(params): Promise<string | boolean> {
         //console.log(params);
         if(!params.user.email) return false;
         try {
@@ -24,7 +24,7 @@ const handler = NextAuth({
             }
           })
         } catch (error) {
-          
+          return false;
         }
         return true;
       }

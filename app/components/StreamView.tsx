@@ -27,7 +27,7 @@ export default function StreamView({
     creatorId,
     playVideo = false,
 }:{
-    creatorId: String,
+    creatorId: string,
     playVideo :boolean
 }) {
   const [videoUrl, setVideoUrl] = useState('')
@@ -57,9 +57,9 @@ export default function StreamView({
         
         const remainingStreams = data.streams
           .filter((stream: Stream) => stream.id !== firstStream.id)
-          .sort((a:any, b:any) => {
+          .sort((a:Stream, b:Stream) => {
             if (a.upvotes === b.upvotes) {
-              return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+              return new Date(a.createdAt ?? 0).getTime() - new Date(b.createdAt ?? 0).getTime()
             }
             return b.upvotes - a.upvotes
           })
@@ -68,9 +68,9 @@ export default function StreamView({
       } else {
         const queuedStreams = data.streams
           .filter((stream : Stream) => stream.id !== currentStream?.id)
-          .sort((a:any, b:any) => {
+          .sort((a:Stream, b:Stream) => {
             if (a.upvotes === b.upvotes) {
-              return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+                return new Date(a.createdAt ?? 0).getTime() - new Date(b.createdAt ?? 0).getTime()
             }
             return b.upvotes - a.upvotes
           })

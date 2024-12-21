@@ -39,11 +39,11 @@ export async function POST(request:NextRequest) {
         return NextResponse.json({
             message: "Upvote done!"
         })
-    } catch (error) {
-        return NextResponse.json({
-            message: "Error in upvoting"
-        },{
-            status: 483
-        })
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        } else {
+            return NextResponse.json({ error: "An unknown error while upvoting" }, { status: 500 });
+        }
     }
 }

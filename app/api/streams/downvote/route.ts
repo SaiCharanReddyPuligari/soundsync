@@ -37,9 +37,9 @@ export async function POST(request:NextRequest) {
         return NextResponse.json({
             message: "Downvote done!"
         })
-    } catch (error) {
+    } catch (error: any) {
         return NextResponse.json({
-            message: "Error in downvoting"
+            message: {"Error in downvoting": error.message}
         },{
             status: 403
         })

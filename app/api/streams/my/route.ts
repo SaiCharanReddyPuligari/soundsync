@@ -18,7 +18,7 @@ export async function GET(request: NextRequest){
                 status: 483
             })
         }
-        const creatorId = request.nextUrl.searchParams.get("creatorId");
+        //const creatorId = request.nextUrl.searchParams.get("creatorId");
 
         const streams = await prismaClient.stream.findMany({
             where:{

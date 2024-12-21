@@ -13,7 +13,7 @@ export default function Sidebar({ setIsExpanded }: SidebarProps) {
   //const router = useRouter
 
   const sidebarWidth = isExpanded ? 'w-[10%]' : 'w-[5%]';
-  const textStyle = isExpanded ? 'opacity-100 ml-3' : 'opacity-0 ml-0';
+  //const textStyle = isExpanded ? 'opacity-100 ml-3' : 'opacity-0 ml-0';
 
   const toggleSidebar = () => {
     const newState = !isExpanded;
