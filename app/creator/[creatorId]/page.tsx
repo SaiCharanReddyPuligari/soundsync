@@ -1,9 +1,14 @@
 import StreamView from "@/app/components/StreamView";
+import { NextPage } from "next";
 
-export default function Creator({
-  params,
-}: {
-  params: { creatorId: string };
-}) {
-  return <StreamView creatorId={params.creatorId} playVideo={false} />;
+interface CreatorProps {
+    params: {
+        creatorId: string;
+    };
 }
+
+const Creator: NextPage<CreatorProps> = ({ params }) => {
+    return <StreamView creatorId={params.creatorId} playVideo={false} />;
+};
+
+export default Creator;
