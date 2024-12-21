@@ -1,13 +1,9 @@
 import StreamView from "@/app/components/StreamView";
 
-export default async function Creator({
-    params: {
-        creatorId,
-    }
-}:{
-    params: {
-        creatorId: string
-    }
-}){
-   return <StreamView creatorId={creatorId} playVideo={false}/>
+export default function Creator({
+  params,
+}: {
+  params: { creatorId: string };
+}) {
+  return <StreamView creatorId={params.creatorId} playVideo={false} />;
 }
