@@ -85,7 +85,7 @@ function NavItem({
   isExpanded,
   onClick
 }: {
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   label: string;
   isExpanded: boolean;
   onClick?: () => void | Promise<void>;

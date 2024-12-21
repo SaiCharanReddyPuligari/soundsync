@@ -36,7 +36,7 @@ export default function StreamView({
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [playing, setPlaying] = useState(true)
+  const [playing] = useState(true)
 
 
   async function refreshStreams() {

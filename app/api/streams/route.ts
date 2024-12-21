@@ -3,7 +3,7 @@ import {z} from "zod";
 import {prismaClient} from "@/app/lib/db"
 const YT_REGEX =
   /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com\/(?:watch\?(?!.*\blist=)(?:.*&)?v=|embed\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[?&]\S+)?$/;
-//@ts-expect-error
+//@ts-expect-error:youtube-search-api has no TypeScript definitions
 import youtubesearchapi from "youtube-search-api";
 import { getServerSession } from "next-auth";
 

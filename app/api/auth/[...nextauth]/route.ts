@@ -1,7 +1,7 @@
 import { prismaClient } from "@/app/lib/db";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { NextResponse } from "next/server";
+//import { NextResponse } from "next/server";
 
 
 const handler = NextAuth({
@@ -23,8 +23,10 @@ const handler = NextAuth({
               provider: "Google"
             }
           })
-        } catch (error) {
+        } catch (error: unknown) {
+          console.error("Error in creating user:", error);
           return false;
+          
         }
         return true;
       }

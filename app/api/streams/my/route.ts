@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import {prismaClient} from "@/app/lib/db"
 
-export async function GET(request: NextRequest){
+export async function GET(){
     const session = await getServerSession();
         //get rid of the db call here
         const user = await prismaClient.user.findFirst({
