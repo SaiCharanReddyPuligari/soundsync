@@ -1,7 +1,6 @@
 // 'use client'; // This ensures the file is treated as a client component.
 
 import { Roboto, Playfair_Display } from 'next/font/google';
-import { SessionProvider } from 'next-auth/react';
 import './globals.css';
 import { Providers } from './provider';
 
