@@ -26,7 +26,7 @@ export default function LandingPage() {
             {session.data?.user && <Button className= "rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>signOut()}>Logout</Button>} 
             {!session.data?.user && <Button className= "rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>signIn()}>SignIn</Button>}
             <Link 
-              href="https://github.com/SaiCharanReddyPuligari/sound-sync" 
+              href="https://github.com/SaiCharanReddyPuligari/soundsync" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block border-2 border-black p-1 hover:bg-black hover:text-white transition-colors"
