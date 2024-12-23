@@ -146,6 +146,7 @@ export async function GET(request:NextRequest) {
     //     })
     // }
 
+    
     const [streams, activeStream] = await Promise.all([await prismaClient.stream.findMany({
         where:{
             userId: creatorId ?? "",
