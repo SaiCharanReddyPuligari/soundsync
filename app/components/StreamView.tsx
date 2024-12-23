@@ -215,7 +215,7 @@ export default function StreamView({
     <div className="min-h-screen bg-white text-black p-8">
       <div className="flex justify-between items-center mb-8">
         <RetroHeading>SoundSync Voting</RetroHeading>
-        <ShareButton creatorId="04f48e7f-865f-494d-bfb8-d86fc2e31510"/>
+        <ShareButton creatorId={creatorId}/>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

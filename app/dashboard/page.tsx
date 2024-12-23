@@ -4,7 +4,7 @@ import StreamView from '../components/StreamView';
 import Sidebar from '@/components/ui/sidebar';
 import { useState } from 'react';
 
-const creatorId = "04f48e7f-865f-494d-bfb8-d86fc2e31510";
+const creatorId = "9ff634d9-dcb4-45c4-a604-b0cd227d3d6d";
 
 export default function VotingPage() {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
