@@ -78,13 +78,13 @@ export async function GET(request:NextRequest) {
                 })
             }
 
-    if(!creatorId){
-        return NextResponse.json({
-            message: "Not a creator"
-        },{
-            status: 411,
-        })
-    }
+    // if(!creatorId){
+    //     return NextResponse.json({
+    //         message: "Not a creator"
+    //     },{
+    //         status: 411,
+    //     })
+    // }
 
     const [streams, activeStream] = await Promise.all([await prismaClient.stream.findMany({
         where:{
@@ -110,7 +110,7 @@ export async function GET(request:NextRequest) {
         }
     }), prismaClient.currentStream.findFirst({
         where: {
-            userId: creatorId,
+            userId: creatorId ?? "",
         },
         include:{
             Stream: true,
