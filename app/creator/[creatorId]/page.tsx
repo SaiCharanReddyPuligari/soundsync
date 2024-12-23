@@ -24,13 +24,12 @@ import {prismaClient} from "@/app/lib/db"; // Adjust this import based on your p
 import { redirect } from "next/navigation";
 
 // We define the props type to match Next.js pages with dynamic routes
-interface CreatorPageProps {
-  params: {
-    creatorId: string;
-  };
-}
-
-async function CreatorPage({ params }: CreatorPageProps) {
+// type Params = Promise<{ creatorId: string }>;
+// interface CreatorPageProps {
+//   params: Params
+// }
+//{ params }: CreatorPageProps
+async function CreatorPage() {
   try {
     const session = await getServerSession();
     if (!session || !session.user?.email) {
@@ -52,7 +51,7 @@ async function CreatorPage({ params }: CreatorPageProps) {
 
     return (
       <div className="container mx-auto">
-        <StreamView creatorId={params.creatorId} playVideo={false} />
+        <StreamView creatorId={user.id} playVideo={false} />
       </div>
     );
 
