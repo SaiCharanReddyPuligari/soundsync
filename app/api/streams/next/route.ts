@@ -13,7 +13,7 @@ export async function GET(){
     
         if(!user){
             return NextResponse.json({
-                message: "Unauthorizes user"
+                message: "Unauthorizes user in next"
             },{
                 status: 483
             })

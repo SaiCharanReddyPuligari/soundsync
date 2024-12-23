@@ -16,8 +16,6 @@ export async function POST(request:NextRequest) {
     try {
         const data = CreateSchemeSchema.parse(await request.json());
         //const isYt= data.url.includes("youtube");
-        //console.log(data);
-        
         const isYt = data.url.match(YT_REGEX);
 
         if(!isYt) {
@@ -33,7 +31,7 @@ export async function POST(request:NextRequest) {
         const res= await youtubesearchapi.GetVideoDetails(extractedId);
         const thumbnailss= res.thumbnail.thumbnails;
         thumbnailss.sort((a:{width:number}, b:{width: number})=> a.width<b.width ? -1: 1)
-        //console.log(res);
+        //console.log(data);
         
         const stream= await prismaClient.stream.create({
            data: {
@@ -47,8 +45,6 @@ export async function POST(request:NextRequest) {
 
            }
         })
-        //console.log(stream);
-        
         return NextResponse.json({
             message:"added Stream",
             id: stream.id,

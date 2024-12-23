@@ -22,7 +22,7 @@ export async function POST(request:NextRequest) {
 
     if(!user){
         return NextResponse.json({
-            message: "Unauthorizes user"
+            message: "Unauthorizes user upvote"
         },{
             status: 403
         })
