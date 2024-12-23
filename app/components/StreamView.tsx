@@ -106,14 +106,18 @@ export default function StreamView({
     
     try {
       setIsSubmitting(true);
+      const requestBody = JSON.stringify({
+        creatorId: creatorId,
+        url: videoUrl,   
+      });
       const response = await fetch('/api/streams', {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(requestBody).toString()
+         },
         credentials: "include", // Add this only if cookies/session are required
-        body: JSON.stringify({
-          creatorId: creatorId,
-          url: videoUrl,   
-        }),
+        body: requestBody
       });
   
       //Handle response

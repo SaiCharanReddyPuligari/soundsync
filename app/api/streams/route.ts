@@ -17,6 +17,8 @@ export async function POST(request:NextRequest) {
         const data = CreateSchemeSchema.parse(await request.json());
         //const isYt= data.url.includes("youtube");
         const isYt = data.url.match(YT_REGEX);
+        // console.log(data, isYt);
+        
 
         if(!isYt) {
             return NextResponse.json({
