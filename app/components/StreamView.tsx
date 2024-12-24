@@ -112,10 +112,7 @@ export default function StreamView({
       });
       const response = await fetch('/api/streams', {
         method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Content-Length": Buffer.byteLength(requestBody).toString()
-         },
+        headers: {"Content-Type": "application/json"},
         credentials: "include", // Add this only if cookies/session are required
         body: requestBody
       });
