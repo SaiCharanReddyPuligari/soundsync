@@ -218,16 +218,133 @@ export default function StreamView({
     )
   }
 
+  // return (
+  //   <div className="min-h-screen bg-white text-black p-8">
+  //     <div className="flex justify-between items-center mb-8">
+  //       <RetroHeading>SoundSync Voting</RetroHeading>
+  //       <ShareButton creatorId={creatorId}/>
+  //     </div>
+      
+  //     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  //       <div>
+  //         <h2 className="text-2xl font-bold mb-4">Currently Playing</h2>
+  //         <RetroCard className="aspect-video">
+  //         {currentStream ? (
+  //             <div className="aspect-video">
+  //               <ReactPlayer
+  //                 url={`https://www.youtube.com/embed/${extractVideoId(currentStream.url)}`}
+  //                 width="100%"
+  //                 height="100%"
+  //                 playing={playing}
+  //                 controls={true}
+  //                 onEnded={playNext}
+  //                 config={{
+  //                   youtube: {
+  //                     playerVars: {
+  //                       autoplay: 1,
+  //                       accelerometer: 1,
+  //                       encrypted_media: 1,
+  //                       gyroscope: 1,
+  //                       picture_in_picture: 1
+  //                     }
+  //                   }
+  //                 }}
+  //               />
+  //             </div>
+  //           ) : (
+  //             <div className="w-full h-full flex items-center justify-center">
+  //               <p className="text-xl font-bold">No stream currently playing</p>
+  //             </div>
+  //           )}
+  //         </RetroCard>
+  //         {playVideo && <RetroButton onClick={playNext} className='w-100%'>Play Next</RetroButton>}
+  //       </div>
+        
+  //       <div>
+  //         <h2 className="text-2xl font-bold mb-4">Add to Queue</h2>
+  //         <RetroCard>
+  //           <form onSubmit={handleSubmit} className="space-y-4">
+  //             <RetroInput
+  //               type="text"
+  //               value={videoUrl}
+  //               onChange={(e) => {
+  //                 setVideoUrl(e.target.value);
+  //                 if (!extractVideoId(e.target.value)) {
+  //                   alert("Enter a valid YouTube URL") // Clear error if valid
+  //                 }
+  //               }}
+  //               placeholder="Paste YouTube URL here"
+  //             />
+  //             <RetroButton type="submit" className="w-full justify-center" disabled={isSubmitting}>
+  //             {isSubmitting ? <Loader className="w-5 h-5 animate-spin" /> : "Add to Queue"}
+  //             </RetroButton>
+  //           </form>
+            
+  //           {videoUrl && extractVideoId(videoUrl) && (
+  //             <div className="mt-4 aspect-video">
+  //               <iframe
+  //                 width="100%"
+  //                 height="100%"
+  //                 src={`https://www.youtube.com/embed/${extractVideoId(videoUrl)}`}
+  //                 frameBorder="0"
+  //                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  //                 allowFullScreen
+  //                 onEnded={playNext}
+  //               ></iframe>
+  //             </div>
+  //           )}
+  //         </RetroCard>
+  //       </div>
+  //     </div>
+  //     {/* Upcoming Streams */}
+  //     <div className="mt-8">
+  //       <h2 className="text-2xl font-bold mb-4">Upcoming Streams</h2>
+  //       <RetroCard>
+  //         {streams.length > 0 ? (
+  //           <ul className="space-y-4">
+  //             {streams.map((stream) => (
+  //               <li key={stream.id} className="flex items-center justify-between p-2 border-b-2 border-black last:border-b-0">
+  //                 <img src={stream.imageSmallUrl} alt={`Thumbnail for ${stream.title}`} className='w-30 h-20 object-cover rounded'/>
+  //                 <span className="font-bold">{stream.title}</span>
+  //                 <div className="flex items-center space-x-2">
+  //                   <span className="font-bold">{stream.upvotes}</span>
+  //                   <RetroButton onClick={() => handleVote(stream.id,stream.haveUpvoted? -1: 1, stream.haveUpvoted? false: true)} className="p-2">
+  //                     {stream.haveUpvoted? <ChevronDown className="w-5 h-5" />: <ChevronUp className="w-5 h-5" />}
+  //                   </RetroButton>
+  //                   <RetroButton onClick={
+  //                     ()=>handleDelete(stream.id)
+  //                     }className="p-2">
+  //                      <LucideDelete/>
+  //                   </RetroButton>
+  //                 </div>
+  //               </li>
+  //             ))}
+  //           </ul>
+  //         ) : (
+  //           <p className="text-center py-4">No streams in the queue</p>
+  //         )}
+  //       </RetroCard>
+  //     </div>
+  //     <ToastContainer
+  //           position= 'top-right'
+  //           autoClose= {3000}
+  //           hideProgressBar= {false}
+  //           closeOnClick= {true}
+  //           pauseOnHover= {true}
+  //           draggable= {true}
+  //     />
+  //   </div>
+  // )
   return (
-    <div className="min-h-screen bg-white text-black p-8">
+    <div className="min-h-screen bg-white text-black p-4 md:p-8">
       <div className="flex justify-between items-center mb-8">
         <RetroHeading>SoundSync Voting</RetroHeading>
         <ShareButton creatorId={creatorId}/>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
         <div>
-          <h2 className="text-2xl font-bold mb-4">Currently Playing</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Currently Playing</h2>
           <RetroCard className="aspect-video">
           {currentStream ? (
               <div className="aspect-video">
@@ -253,15 +370,15 @@ export default function StreamView({
               </div>
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <p className="text-xl font-bold">No stream currently playing</p>
+                <p className="text-lg md:text-xl font-bold">No stream currently playing</p>
               </div>
             )}
           </RetroCard>
-          {playVideo && <RetroButton onClick={playNext} className='w-100%'>Play Next</RetroButton>}
+          {playVideo && <RetroButton onClick={playNext} className='w-full'>Play Next</RetroButton>}
         </div>
         
         <div>
-          <h2 className="text-2xl font-bold mb-4">Add to Queue</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Add to Queue</h2>
           <RetroCard>
             <form onSubmit={handleSubmit} className="space-y-4">
               <RetroInput
@@ -270,13 +387,13 @@ export default function StreamView({
                 onChange={(e) => {
                   setVideoUrl(e.target.value);
                   if (!extractVideoId(e.target.value)) {
-                    alert("Enter a valid YouTube URL") // Clear error if valid
+                    alert("Enter a valid YouTube URL")
                   }
                 }}
                 placeholder="Paste YouTube URL here"
               />
               <RetroButton type="submit" className="w-full justify-center" disabled={isSubmitting}>
-              {isSubmitting ? <Loader className="w-5 h-5 animate-spin" /> : "Add to Queue"}
+                {isSubmitting ? <Loader className="w-5 h-5 animate-spin" /> : "Add to Queue"}
               </RetroButton>
             </form>
             
@@ -296,25 +413,42 @@ export default function StreamView({
           </RetroCard>
         </div>
       </div>
+
       {/* Upcoming Streams */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Upcoming Streams</h2>
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Upcoming Streams</h2>
         <RetroCard>
           {streams.length > 0 ? (
             <ul className="space-y-4">
               {streams.map((stream) => (
-                <li key={stream.id} className="flex items-center justify-between p-2 border-b-2 border-black last:border-b-0">
-                  <img src={stream.imageSmallUrl} alt={`Thumbnail for ${stream.title}`} className='w-30 h-20 object-cover rounded'/>
-                  <span className="font-bold">{stream.title}</span>
-                  <div className="flex items-center space-x-2">
+                <li key={stream.id} className="flex flex-col md:flex-row md:items-center p-2 border-b-2 border-black last:border-b-0">
+                  <div className="flex items-center space-x-3 mb-2 md:mb-0">
+                    <img 
+                      src={stream.imageSmallUrl} 
+                      alt={`Thumbnail for ${stream.title}`} 
+                      className="w-24 h-16 md:w-30 md:h-20 object-cover rounded"
+                    />
+                    <span className="font-normal md:font-bold text-sm md:text-base">
+                      {stream.title.length > 30 
+                        ? `${stream.title.substring(0, 30)}...` 
+                        : stream.title}
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-2 mt-2 md:mt-0 md:ml-auto">
                     <span className="font-bold">{stream.upvotes}</span>
-                    <RetroButton onClick={() => handleVote(stream.id,stream.haveUpvoted? -1: 1, stream.haveUpvoted? false: true)} className="p-2">
-                      {stream.haveUpvoted? <ChevronDown className="w-5 h-5" />: <ChevronUp className="w-5 h-5" />}
+                    <RetroButton 
+                      onClick={() => handleVote(stream.id, stream.haveUpvoted ? -1 : 1, !stream.haveUpvoted)} 
+                      className="p-2"
+                    >
+                      {stream.haveUpvoted 
+                        ? <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> 
+                        : <ChevronUp className="w-4 h-4 md:w-5 md:h-5" />}
                     </RetroButton>
-                    <RetroButton onClick={
-                      ()=>handleDelete(stream.id)
-                      }className="p-2">
-                       <LucideDelete/>
+                    <RetroButton 
+                      onClick={() => handleDelete(stream.id)}
+                      className="p-2"
+                    >
+                      <LucideDelete className="w-4 h-4 md:w-5 md:h-5"/>
                     </RetroButton>
                   </div>
                 </li>
@@ -326,13 +460,13 @@ export default function StreamView({
         </RetroCard>
       </div>
       <ToastContainer
-            position= 'top-right'
-            autoClose= {3000}
-            hideProgressBar= {false}
-            closeOnClick= {true}
-            pauseOnHover= {true}
-            draggable= {true}
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
       />
     </div>
-  )
+)
 }

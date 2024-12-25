@@ -7,7 +7,9 @@ export function ShareButton({ creatorId }: { creatorId: string }) {
   const handleShare = () => {
     
     
-    const shareableLink = `${window.location.protocol}//${window.location.hostname}:3000/creator/${creatorId}`;
+    //const shareableLink = `${window.location.protocol}//${window.location.hostname}:3000/creator/${creatorId}`;//for testing local environment
+    const shareableLink = `${window.location.protocol}//${window.location.hostname}/creator/${creatorId}`; //for production environment
+
     
     // Copy the link to the clipboard
     navigator.clipboard
