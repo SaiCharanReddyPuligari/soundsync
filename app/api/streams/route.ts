@@ -64,13 +64,31 @@ export async function POST(request:NextRequest) {
                 id: stream.id,
             })
         } catch (error) {
-            console.log(error);
-            
+            console.error("Error processing request:", error);
+        
+        if (error instanceof SyntaxError) {
             return NextResponse.json({
-                message: "Error while adding a stream"
-            },{
-                status: 411
-            })
+                success: false,
+                message: "Invalid JSON format"
+            }, {
+                status: 400
+            });
+        }
+
+        // console.error("Detailed error:", {
+        //     name: error.name,
+        //     message: error.message,
+        //     stack: error.stack
+        // });
+
+        // Handle other specific error types as needed
+        
+        return NextResponse.json({
+            success: false,
+            message: "Internal server error"
+        }, {
+            status: 500
+        });
         }
             }catch(error:unknown){
                 console.error("unable to parse data",error);
