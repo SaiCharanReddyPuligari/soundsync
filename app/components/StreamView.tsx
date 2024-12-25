@@ -97,6 +97,8 @@ export default function StreamView({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const videoId = extractVideoId(videoUrl);
+    console.log(videoId);
+    
     if (!videoId) {
       console.error("Invalid YouTube URL");
       setError("Invalid YouTube URL. Please check and try again.");
@@ -110,6 +112,8 @@ export default function StreamView({
         creatorId: creatorId,
         url: videoUrl,   
       });
+      console.log("This is req",requestBody);
+      
       const response = await fetch('/api/streams', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -119,6 +123,8 @@ export default function StreamView({
   
       //Handle response
       const data = await response.json();
+      console.log("Here is response and body",response,data);
+      
   
       if (!response.ok) {
         throw new Error(data.message || "Failed to add stream");

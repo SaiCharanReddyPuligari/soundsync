@@ -14,7 +14,7 @@ const CreateSchemeSchema = z.object({
 export async function POST(request:NextRequest) {
     try{
         const bodyText = await request.text();
-        console.log("Received request body:", bodyText);
+        //console.log("Received request body:", bodyText);
 
         if (!bodyText) {
             return NextResponse.json({
@@ -29,7 +29,7 @@ export async function POST(request:NextRequest) {
             const data = CreateSchemeSchema.parse(bodyJson);
             //const isYt= data.url.includes("youtube");
             const isYt = data.url.match(YT_REGEX);
-             console.log(data, bodyJson);
+             //console.log(data, bodyJson);
             
 
             if(!isYt) {
@@ -69,7 +69,7 @@ export async function POST(request:NextRequest) {
             return NextResponse.json({
                 message: "Error while adding a stream"
             },{
-                status: 400
+                status: 411
             })
         }
             }catch(error:unknown){
