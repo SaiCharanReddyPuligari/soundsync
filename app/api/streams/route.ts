@@ -11,53 +11,6 @@ const CreateSchemeSchema = z.object({
     creatorId : z.string(),
     url: z.string()
 })
-// try {
-//     const data = CreateSchemeSchema.parse(await request.json());
-//     //const isYt= data.url.includes("youtube");
-//     const isYt = data.url.match(YT_REGEX);
-//     // console.log(data, isYt);
-    
-
-//     if(!isYt) {
-//         return NextResponse.json({
-//             message: "Wrong URL ID"
-//         },{
-//             status: 411
-//         })
-//     }
-
-//     const extractedId = data.url.split("?v=")[1];
-
-//     const res= await youtubesearchapi.GetVideoDetails(extractedId);
-//     const thumbnailss= res.thumbnail.thumbnails;
-//     thumbnailss.sort((a:{width:number}, b:{width: number})=> a.width<b.width ? -1: 1)
-//     //console.log(data);
-    
-//     const stream= await prismaClient.stream.create({
-//        data: {
-//         userId : data.creatorId,
-//         url: data.url,
-//         extractedId,
-//         type: "YouTube",
-//         title: res.title ?? "Unable to fetch video",
-//         imageSmallUrl: (thumbnailss.length > 1 ? thumbnailss[thumbnailss.length-2].url : thumbnailss[thumbnailss.length-1].url) ?? "https://indietips.com/wp-content/uploads/2022/12/Warm-and-Cool-Tones-In-Music.jpg",
-//         imageBigUrl: thumbnailss[thumbnailss.length-1].url ?? "https://indietips.com/wp-content/uploads/2022/12/Warm-and-Cool-Tones-In-Music.jpg"
-
-//        }
-//     })
-//     return NextResponse.json({
-//         message:"added Stream",
-//         id: stream.id,
-//     })
-// } catch (error) {
-//     console.log(error);
-    
-//     return NextResponse.json({
-//         message: "Error while adding a stream"
-//     },{
-//         status: 411
-//     })
-// }
 export async function POST(request:NextRequest) {
     try{
         const bodyText = await request.text();
@@ -116,7 +69,7 @@ export async function POST(request:NextRequest) {
             return NextResponse.json({
                 message: "Error while adding a stream"
             },{
-                status: 411
+                status: 400
             })
         }
             }catch(error:unknown){

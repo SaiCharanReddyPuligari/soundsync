@@ -6,7 +6,6 @@ export function SoundSyncLogo() {
           <span className="text-xl font-bold">S</span>
         </div>
       </div>
-      <span className="text-2xl font-bold">SoundSync</span>
     </div>
   )
 }

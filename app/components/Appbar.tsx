@@ -3,28 +3,55 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { RetroButton, RetroCard, WavyDivider, RetroHeading } from '@/app/components/retro-elements'
 import { SoundSyncLogo } from '@/app/components/logo'
-import { Github, ListMusic, ThumbsUp, ThumbsDown, Music, Users, Headphones, Check, ArrowRight } from 'lucide-react'
+import {useState} from 'react'
+import { Github, ListMusic, ThumbsUp, ThumbsDown, Music, Users, Headphones, Check, ArrowRight, X, Menu } from 'lucide-react'
 import { useSession, signOut, signIn } from 'next-auth/react'
 import { Redirect } from './Redirect'
 
 export default function LandingPage() {
   const session = useSession();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
-      <header className="border-b-2 border-black">
+      <header className="border-b-2 border-black relative">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="transform hover:scale-105 transition-transform">
+        <Link href="/" className="transform hover:scale-105 transition-transform">
+          <div className="flex items-center space-x-3">
             <SoundSyncLogo />
-            <Redirect/>
-          </Link>
-          <nav className="space-x-6 font-bold">
+            {/* Text only shows on larger screens */}
+            <span className="hidden sm:inline text-2xl font-bold">SoundSync</span>
+            <span className="hidden sm:inline">
+              <Redirect />
+            </span>
+          </div>
+        </Link>
+
+
+          {/* Hamburger menu button for mobile */}
+          <button 
+            className="md:hidden p-2 hover:bg-gray-100 rounded"
+            onClick={toggleMenu}
+          >
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
+
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex space-x-6 font-bold">
             <Link href="#features" className="hover:underline underline-offset-4">Features</Link>
             <Link href="#pricing" className="hover:underline underline-offset-4">Pricing</Link>
             <Link href="#about" className="hover:underline underline-offset-4">About</Link>
             <Link href="https://www.linkedin.com/in/psaicharanreddy/" target='blank' className="hover:underline underline-offset-4">LinkedIn</Link>
-            {session.data?.user && <Button className= "rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>signOut()}>Logout</Button>} 
-            {!session.data?.user && <Button className= "rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>signIn()}>SignIn</Button>}
+            {session.data?.user && <Button className="rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>signOut()}>Logout</Button>} 
+            {!session.data?.user && <Button className="rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>signIn()}>SignIn</Button>}
             <Link 
               href="https://github.com/SaiCharanReddyPuligari/soundsync" 
               target="_blank" 
@@ -35,6 +62,37 @@ export default function LandingPage() {
             </Link>
           </nav>
         </div>
+
+        {/* Mobile navigation */}
+        {isMenuOpen && (
+          <nav className="md:hidden absolute top-full left-0 right-0 bg-white border-b-2 border-black z-50">
+            <div className="flex flex-col space-y-4 p-4">
+              <Link href="#features" className="hover:underline underline-offset-4" onClick={toggleMenu}>Features</Link>
+              <Link href="#pricing" className="hover:underline underline-offset-4" onClick={toggleMenu}>Pricing</Link>
+              <Link href="#about" className="hover:underline underline-offset-4" onClick={toggleMenu}>About</Link>
+              <Link href="https://www.linkedin.com/in/psaicharanreddy/" target='blank' className="hover:underline underline-offset-4" onClick={toggleMenu}>LinkedIn</Link>
+              {session.data?.user && (
+                <Button className="rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>{signOut(); toggleMenu();}}>
+                  Logout
+                </Button>
+              )} 
+              {!session.data?.user && (
+                <Button className="rounded-lg hover:text-white hover:bg-black hover:underline underline-offset-4" onClick={()=>{signIn(); toggleMenu();}}>
+                  SignIn
+                </Button>
+              )}
+              <Link 
+                href="https://github.com/SaiCharanReddyPuligari/soundsync" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block border-2 border-black p-1 hover:bg-black hover:text-white transition-colors w-fit"
+                onClick={toggleMenu}
+              >
+                <Github className="w-6 h-6" />
+              </Link>
+            </div>
+          </nav>
+        )}
       </header>
 
       {/* Hero Section */}
